@@ -1,16 +1,7 @@
-.git
-*.zip
-*.md
-cookie.txt
-wordpress-site/wordpress/wp-content/database/
-wordpress-site/wordpress/wp-content/uploads/
-wordpress-site/wordpress/wp-content/mail-log/
-wordpress-site/wordpress/wp-config.php
-wordpress-site/wordpress/wp-config-sample.php
-wordpress-site/wordpress/router.php
-wordpress-site/wordpress/wp-content/debug.log
-wordpress-site/wordpress/wp-admin/
-wordpress-site/wordpress/wp-includes/
-wordpress-site/wordpress/*.php
-wordpress-site/wordpress/license.txt
-wordpress-site/wordpress/readme.html
+# Ignore everything
+*
+
+# Only include what the Dockerfile actually COPY's
+!start.sh
+!wordpress-site/wordpress/wp-content/themes/trending-brain/
+!wordpress-site/wordpress/wp-content/mu-plugins/
