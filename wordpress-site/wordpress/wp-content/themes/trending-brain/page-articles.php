@@ -13,8 +13,6 @@ get_header();
 <main class="archive-section">
 
     <?php
-    $categories    = get_categories( [ 'hide_empty' => true ] );
-    $current_cat   = isset( $_GET['category'] ) ? absint( $_GET['category'] ) : 0;
     $current_search = isset( $_GET['q'] ) ? sanitize_text_field( $_GET['q'] ) : '';
     $current_order  = isset( $_GET['orderby'] ) ? sanitize_text_field( $_GET['orderby'] ) : 'date';
     $paged          = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
@@ -28,10 +26,6 @@ get_header();
         'paged'          => $paged,
     ];
 
-    if ( $current_cat ) {
-        $args['cat'] = $current_cat;
-    }
-
     if ( $current_search ) {
         $args['s'] = $current_search;
     }
@@ -39,45 +33,21 @@ get_header();
     if ( $current_order === 'oldest' ) {
         $args['orderby'] = 'date';
         $args['order']   = 'ASC';
-    } elseif ( $current_order === 'title' ) {
-        $args['orderby'] = 'title';
-        $args['order']   = 'ASC';
     }
 
     $articles = new WP_Query( $args );
     ?>
 
     <div class="archive-toolbar">
-        <div class="filter-group">
-            <span class="filter-label">Filter</span>
-            <div class="filter-pills">
-                <a href="<?php echo esc_url( $page_url ); ?>"
-                   class="filter-pill <?php echo ! $current_cat ? 'active' : ''; ?>">
-                    All
-                </a>
-                <?php foreach ( $categories as $cat ) : ?>
-                    <a href="<?php echo esc_url( add_query_arg( 'category', $cat->term_id, $page_url ) ); ?>"
-                       class="filter-pill <?php echo ( $current_cat == $cat->term_id ) ? 'active' : ''; ?>">
-                        <?php echo esc_html( $cat->name ); ?>
-                        <span class="pill-count"><?php echo $cat->count; ?></span>
-                    </a>
-                <?php endforeach; ?>
-            </div>
-        </div>
-
         <div class="sort-dropdown">
             <span class="filter-label">Sort</span>
             <select onchange="window.location.href=this.value">
-                <?php $sort_base = $current_cat ? add_query_arg( 'category', $current_cat, $page_url ) : $page_url; ?>
-                <option value="<?php echo esc_url( remove_query_arg( 'orderby', $sort_base ) ); ?>" <?php selected( $current_order, 'date' ); ?>>Newest</option>
-                <option value="<?php echo esc_url( add_query_arg( 'orderby', 'oldest', $sort_base ) ); ?>" <?php selected( $current_order, 'oldest' ); ?>>Oldest</option>
+                <option value="<?php echo esc_url( remove_query_arg( 'orderby', $page_url ) ); ?>" <?php selected( $current_order, 'date' ); ?>>Newest</option>
+                <option value="<?php echo esc_url( add_query_arg( 'orderby', 'oldest', $page_url ) ); ?>" <?php selected( $current_order, 'oldest' ); ?>>Oldest</option>
             </select>
         </div>
 
         <form class="archive-search" method="get" action="<?php echo esc_url( $page_url ); ?>">
-            <?php if ( $current_cat ) : ?>
-                <input type="hidden" name="category" value="<?php echo $current_cat; ?>" />
-            <?php endif; ?>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1010.5 18a7.5 7.5 0 006.15-3.35z" />
             </svg>
@@ -87,7 +57,7 @@ get_header();
 
     <div class="archive-results-bar">
         <span class="results-count"><?php echo $articles->found_posts; ?> article<?php echo $articles->found_posts != 1 ? 's' : ''; ?></span>
-        <?php if ( $current_cat || $current_search ) : ?>
+        <?php if ( $current_search ) : ?>
             <a href="<?php echo esc_url( $page_url ); ?>" class="clear-filter">Clear filters &times;</a>
         <?php endif; ?>
     </div>
