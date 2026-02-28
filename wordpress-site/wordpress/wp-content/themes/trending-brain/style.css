@@ -749,15 +749,136 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--dark-gray);
 }
 
-.single-content ul, .single-content ol {
-    margin: 1.5rem 0;
-    padding-left: 1.5rem;
+.single-content ul, .single-content ol,
+.page-content ul, .page-content ol {
+    margin: 1.75rem 0;
+    padding-left: 0;
+    list-style: none;
 }
 
-.single-content li {
-    margin-bottom: 0.5rem;
-    line-height: 1.7;
+.single-content ol, .page-content ol {
+    counter-reset: ol-counter;
+}
+
+.single-content li, .page-content li {
+    position: relative;
+    margin-bottom: 0.75rem;
+    padding-left: 1.75rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
     color: var(--dark-gray);
+}
+
+.single-content ul > li::before,
+.page-content ul > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--black);
+}
+
+.single-content ol > li::before,
+.page-content ol > li::before {
+    counter-increment: ol-counter;
+    content: counter(ol-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--black);
+    width: 1.25rem;
+    text-align: center;
+}
+
+.single-content li > ul, .single-content li > ol,
+.page-content li > ul, .page-content li > ol {
+    margin: 0.5rem 0 0.25rem;
+}
+
+.single-content li > ul > li::before,
+.page-content li > ul > li::before {
+    width: 5px;
+    height: 5px;
+    background: transparent;
+    border: 1.5px solid var(--dark-gray);
+}
+
+/* ========== TABLES ========== */
+.single-content table, .page-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    overflow-x: auto;
+    display: block;
+}
+
+.single-content thead, .page-content thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.single-content tbody, .page-content tbody {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.single-content th, .page-content th {
+    background: var(--near-black);
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.single-content th:first-child, .page-content th:first-child {
+    border-radius: 6px 0 0 0;
+}
+
+.single-content th:last-child, .page-content th:last-child {
+    border-radius: 0 6px 0 0;
+}
+
+.single-content td, .page-content td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--mid-gray);
+    color: var(--dark-gray);
+    vertical-align: top;
+}
+
+.single-content tr:last-child td,
+.page-content tr:last-child td {
+    border-bottom: 2px solid var(--near-black);
+}
+
+.single-content tr:hover td,
+.page-content tr:hover td {
+    background: var(--off-white);
+}
+
+.single-content td:first-child, .page-content td:first-child {
+    font-weight: 500;
+    color: var(--near-black);
+}
+
+.single-content caption, .page-content caption {
+    caption-side: bottom;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    text-align: left;
 }
 
 .single-content img {
@@ -1215,6 +1336,15 @@ h1, h2, h3, h4, h5, h6 {
         flex-direction: column;
         gap: 0.5rem;
         align-items: flex-start;
+    }
+
+    .single-content table, .page-content table {
+        font-size: 0.85rem;
+    }
+
+    .single-content th, .page-content th,
+    .single-content td, .page-content td {
+        padding: 0.6rem 0.7rem;
     }
 }
 
