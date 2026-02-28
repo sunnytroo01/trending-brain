@@ -19,5 +19,9 @@ define('WP_SITEURL', 'https://${DOMAIN}');
 define('FORCE_SSL_ADMIN', true);"
 fi
 
+# Ensure uploads directory exists and is writable (for Railway volume mount)
+mkdir -p /var/www/html/wp-content/uploads
+chown -R www-data:www-data /var/www/html/wp-content/uploads
+
 # Run the official WordPress entrypoint (creates wp-config.php from env vars)
 exec docker-entrypoint.sh apache2-foreground
