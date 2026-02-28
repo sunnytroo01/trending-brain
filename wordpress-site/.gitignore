@@ -1,0 +1,18 @@
+# Local SQLite database (not needed on Railway — uses MySQL)
+wordpress/wp-content/database/
+
+# Local config (Railway sets env vars instead)
+wordpress/wp-config.php
+
+# Debug logs
+wordpress/wp-content/debug.log
+
+# Uploads (handled by Railway persistent volume)
+wordpress/wp-content/uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Downloaded zips
+*.zip

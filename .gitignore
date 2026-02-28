@@ -1,0 +1,23 @@
+# Ignore everything by default
+*
+
+# Allow gitignore
+!.gitignore
+
+# Allow deployment files
+!wordpress-site/
+!wordpress-site/Dockerfile
+!wordpress-site/railway.json
+!wordpress-site/start.sh
+!wordpress-site/.dockerignore
+
+# Allow our custom theme
+!wordpress-site/wordpress/
+!wordpress-site/wordpress/wp-content/
+!wordpress-site/wordpress/wp-content/themes/
+!wordpress-site/wordpress/wp-content/themes/trending-brain/
+!wordpress-site/wordpress/wp-content/themes/trending-brain/**
+
+# Allow mu-plugins
+!wordpress-site/wordpress/wp-content/mu-plugins/
+!wordpress-site/wordpress/wp-content/mu-plugins/**

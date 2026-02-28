@@ -1,0 +1,10 @@
+.git
+*.zip
+*.md
+wordpress/wp-content/database/
+wordpress/wp-content/uploads/
+wordpress/wp-content/mail-log/
+wordpress/wp-config.php
+wordpress/wp-config-sample.php
+wordpress/router.php
+wordpress/wp-content/debug.log
