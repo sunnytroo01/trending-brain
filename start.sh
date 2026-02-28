@@ -1,10 +1,15 @@
 #!/bin/bash
 set -e
 
-# Railway provides a PORT env var — update Apache to listen on it
 PORT="${PORT:-80}"
-sed -i "s/Listen 80/Listen $PORT/g" /etc/apache2/ports.conf
-sed -i "s/:80/:$PORT/g" /etc/apache2/sites-available/000-default.conf
+
+# Overwrite Apache port config (cleaner than sed replacement)
+echo "Listen $PORT" > /etc/apache2/ports.conf
+sed -i "s/<VirtualHost \*:[0-9]*>/<VirtualHost *:$PORT>/" /etc/apache2/sites-available/000-default.conf
+
+# Fix MPM conflict — ensure only prefork is loaded
+a2dismod mpm_event mpm_worker 2>/dev/null || true
+a2enmod mpm_prefork 2>/dev/null || true
 
 # Auto-configure WordPress URLs from DOMAIN env var (set on Railway)
 if [ -n "$DOMAIN" ]; then
