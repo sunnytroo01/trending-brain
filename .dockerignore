@@ -1,7 +1,17 @@
 # Ignore everything
 *
 
-# Only include what the Dockerfile actually COPY's
+# Allow start script
 !start.sh
+
+# Allow custom theme (must un-ignore every parent directory)
+!wordpress-site/
+!wordpress-site/wordpress/
+!wordpress-site/wordpress/wp-content/
+!wordpress-site/wordpress/wp-content/themes/
 !wordpress-site/wordpress/wp-content/themes/trending-brain/
+!wordpress-site/wordpress/wp-content/themes/trending-brain/**
+
+# Allow mu-plugins
 !wordpress-site/wordpress/wp-content/mu-plugins/
+!wordpress-site/wordpress/wp-content/mu-plugins/**
