@@ -1,10 +1,10 @@
 FROM wordpress:6-apache
 
 # Copy our custom theme
-COPY wordpress/wp-content/themes/trending-brain/ /var/www/html/wp-content/themes/trending-brain/
+COPY wordpress-site/wordpress/wp-content/themes/trending-brain/ /var/www/html/wp-content/themes/trending-brain/
 
 # Copy mu-plugins (local mail logger — auto-disabled in production)
-COPY wordpress/wp-content/mu-plugins/ /var/www/html/wp-content/mu-plugins/
+COPY wordpress-site/wordpress/wp-content/mu-plugins/ /var/www/html/wp-content/mu-plugins/
 
 # HTTPS reverse proxy detection — Railway terminates SSL at its proxy,
 # so PHP needs to know the original request was HTTPS

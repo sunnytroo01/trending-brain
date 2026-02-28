@@ -4,14 +4,14 @@
 # Allow gitignore
 !.gitignore
 
-# Allow deployment files
-!wordpress-site/
-!wordpress-site/Dockerfile
-!wordpress-site/railway.json
-!wordpress-site/start.sh
-!wordpress-site/.dockerignore
+# Allow deployment files (repo root)
+!Dockerfile
+!railway.json
+!start.sh
+!.dockerignore
 
 # Allow our custom theme
+!wordpress-site/
 !wordpress-site/wordpress/
 !wordpress-site/wordpress/wp-content/
 !wordpress-site/wordpress/wp-content/themes/
