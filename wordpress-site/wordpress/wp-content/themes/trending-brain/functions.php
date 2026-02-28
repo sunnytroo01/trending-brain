@@ -35,7 +35,13 @@ add_filter( 'excerpt_more', function () {
     return '...';
 });
 
-// ── Theme Activation: auto-create pages, posts, permalinks ────────────
+// ── Theme Setup: auto-create pages, posts, permalinks (version-gated) ──
+add_action( 'init', function () {
+    $current_version = '1.1';
+    if ( get_option( 'tb_setup_version' ) === $current_version ) return;
+    tb_theme_activate();
+    update_option( 'tb_setup_version', $current_version );
+});
 add_action( 'after_switch_theme', 'tb_theme_activate' );
 function tb_theme_activate() {
     // Set pretty permalinks
