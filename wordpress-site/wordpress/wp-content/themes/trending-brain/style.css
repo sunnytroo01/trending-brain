@@ -809,58 +809,41 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ========== TABLES ========== */
-.single-content table, .page-content table {
+.single-content table,
+.page-content table {
     width: 100%;
     border-collapse: collapse;
     margin: 2rem 0;
-    font-size: 0.95rem;
+    font-size: 0.93rem;
     line-height: 1.6;
-    overflow-x: auto;
-    display: block;
 }
 
-.single-content thead, .page-content thead {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-}
-
-.single-content tbody, .page-content tbody {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-}
-
-.single-content th, .page-content th {
-    background: var(--near-black);
-    color: var(--white);
+.single-content th,
+.page-content th {
+    background: var(--light-gray);
+    color: var(--near-black);
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    padding: 0.85rem 1rem;
+    padding: 0.75rem 1rem;
     text-align: left;
-    white-space: nowrap;
+    border-bottom: 2px solid var(--mid-gray);
 }
 
-.single-content th:first-child, .page-content th:first-child {
-    border-radius: 6px 0 0 0;
-}
-
-.single-content th:last-child, .page-content th:last-child {
-    border-radius: 0 6px 0 0;
-}
-
-.single-content td, .page-content td {
-    padding: 0.8rem 1rem;
-    border-bottom: 1px solid var(--mid-gray);
+.single-content td,
+.page-content td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--light-gray);
     color: var(--dark-gray);
     vertical-align: top;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .single-content tr:last-child td,
 .page-content tr:last-child td {
-    border-bottom: 2px solid var(--near-black);
+    border-bottom: none;
 }
 
 .single-content tr:hover td,
@@ -868,12 +851,14 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--off-white);
 }
 
-.single-content td:first-child, .page-content td:first-child {
+.single-content td:first-child,
+.page-content td:first-child {
     font-weight: 500;
     color: var(--near-black);
 }
 
-.single-content caption, .page-content caption {
+.single-content caption,
+.page-content caption {
     caption-side: bottom;
     margin-top: 0.75rem;
     font-size: 0.85rem;
@@ -1314,6 +1299,7 @@ h1, h2, h3, h4, h5, h6 {
 
     .footer-inner {
         flex-direction: column;
+        align-items: center;
         gap: 2rem;
         text-align: center;
     }
@@ -1338,13 +1324,16 @@ h1, h2, h3, h4, h5, h6 {
         align-items: flex-start;
     }
 
-    .single-content table, .page-content table {
-        font-size: 0.85rem;
+    .single-content table,
+    .page-content table {
+        font-size: 0.82rem;
     }
 
-    .single-content th, .page-content th,
-    .single-content td, .page-content td {
-        padding: 0.6rem 0.7rem;
+    .single-content th,
+    .page-content th,
+    .single-content td,
+    .page-content td {
+        padding: 0.55rem 0.65rem;
     }
 }
 
